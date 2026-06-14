@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 7%;
+    --foreground: 210 40% 98%;
+    --card: 229 36% 14%;
+    --card-foreground: 210 40% 98%;
+    --popover: 229 36% 14%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 245 58% 61%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 229 36% 20%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 229 36% 20%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 245 58% 61%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 229 36% 20%;
+    --input: 229 36% 20%;
+    --ring: 245 58% 61%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-surface text-white antialiased;
+    background: #0f1117;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: #0f1117; }
+  ::-webkit-scrollbar-thumb { background: #2d3154; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #4f46e5; }
+}
+
+@layer components {
+  .card-glass {
+    background: linear-gradient(145deg, rgba(31, 35, 64, 0.8) 0%, rgba(22, 25, 39, 0.9) 100%);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(45, 49, 84, 0.6);
+  }
+
+  .metric-card {
+    @apply card-glass rounded-xl p-5 transition-all duration-200 hover:border-steel-600/40;
+  }
+
+  .badge-critical { @apply bg-red-500/10 text-red-400 border border-red-500/20 text-xs font-semibold px-2 py-0.5 rounded-full; }
+  .badge-high     { @apply bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-semibold px-2 py-0.5 rounded-full; }
+  .badge-medium   { @apply bg-yellow-500/10 text-yellow-400 border border-yellow-500/20 text-xs font-semibold px-2 py-0.5 rounded-full; }
+  .badge-low      { @apply bg-green-500/10 text-green-400 border border-green-500/20 text-xs font-semibold px-2 py-0.5 rounded-full; }
+  .badge-normal   { @apply bg-steel-500/10 text-steel-300 border border-steel-500/20 text-xs font-semibold px-2 py-0.5 rounded-full; }
+
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground
+           transition-all duration-150 hover:bg-card hover:text-white cursor-pointer;
+  }
+  .nav-item.active {
+    @apply bg-steel-600/20 text-white border border-steel-600/30;
+  }
+
+  .data-table th {
+    @apply text-xs font-semibold uppercase tracking-wider text-muted-foreground py-3 px-4;
+  }
+  .data-table td {
+    @apply text-sm text-gray-200 py-3 px-4 border-b border-card-border/30;
+  }
+  .data-table tr:hover td {
+    @apply bg-card/50;
+  }
+
+  .status-dot-green  { @apply w-2 h-2 rounded-full bg-green-400 animate-pulse; }
+  .status-dot-red    { @apply w-2 h-2 rounded-full bg-red-400 animate-pulse; }
+  .status-dot-amber  { @apply w-2 h-2 rounded-full bg-amber-400 animate-pulse; }
+  .status-dot-gray   { @apply w-2 h-2 rounded-full bg-gray-500; }
+}
+
+@layer utilities {
+  .text-gradient-steel {
+    background: linear-gradient(135deg, #818cf8, #a5b4fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-gradient-fire {
+    background: linear-gradient(135deg, #f97316, #ef4444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .glow-steel { box-shadow: 0 0 30px rgba(99, 102, 241, 0.2); }
+  .glow-red   { box-shadow: 0 0 20px rgba(239, 68, 68, 0.3); }
+  .glow-green { box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+}
+
+/* Recharts overrides */
+.recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: #1a1d2e !important;
+  border: 1px solid #2d3154 !important;
+  border-radius: 8px !important;
+}
+.recharts-text { fill: #9ca3af !important; }
+.recharts-cartesian-axis-tick-value { font-size: 11px; }
